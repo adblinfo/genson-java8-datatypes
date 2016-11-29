@@ -3,8 +3,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>se.blinfo</groupId>
 	<artifactId>genson-java8-datatypes</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-RELEASE</version>
 	<name>genson-java8-datatypes</name>
+	<inceptionYear>2016</inceptionYear>
+	<!-- <issueManagement> <system>JIRA</system> <url></url> </issueManagement> -->
+	<scm>
+		<connection>scm:git:ssh://github.com/adblinfo/genson-java8-datatypes.git</connection>
+		<developerConnection>scm:git:ssh://github.com/adblinfo/genson-java8-datatypes.git</developerConnection>
+		<url>https://github.com/adblinfo/genson-java8-datatypes</url>
+		<tag>genson-java8-datatypes_ver</tag>
+	</scm>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -55,6 +63,30 @@
 							</compilerArguments> -->
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.5.1</version>
+					<executions>
+						<execution>
+							<id>default-deploy</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<skipStaging>true</skipStaging>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -69,8 +101,44 @@
 						</compilerArguments> -->
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skipStaging>true</skipStaging>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>repos.blinfo.se</id>
+			<name>repos.blinfo.se-releases</name>
+			<url>http://repos.blinfo.se/artifactory/libs-release-local</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>repos.blinfo.se</id>
+			<name>repos.blinfo.se-snapshots</name>
+			<url>http://repos.blinfo.se/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<properties>
 		<maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
 		<java.version>1.8</java.version>
