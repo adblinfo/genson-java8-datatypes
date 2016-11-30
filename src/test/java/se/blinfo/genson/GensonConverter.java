@@ -1,6 +1,7 @@
 package se.blinfo.genson;
 
 import java.math.BigDecimal;
+import static java.time.format.DateTimeFormatter.*;
 import java.time.format.DateTimeFormatter;
 
 import com.owlike.genson.Genson;
@@ -18,9 +19,16 @@ public class GensonConverter implements JsonConverter {
 			.useDateAsTimestamp(false)
 			//.withConverterFactory(new DefaultConverters.EnumConverterFactory(false))
 			.withConverter(BigDecimalConverter.instance, BigDecimal.class)
-			.withBundle(new Java8TypesBundle()
-					.useDateTimeFormatter(formatter)
-					.useLocalDateTimeFormatter(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+			.withBundle(
+					new Java8TypesBundle()
+					.useLocalDateFormatter(formatter)
+					.useLocalDateTimeFormatter(ISO_LOCAL_DATE_TIME)
+					.useLocalTimeFormatter(ISO_LOCAL_TIME)
+					.useInstantFormatter(ISO_INSTANT)
+					.useOffsetDateTimeFormatter(ISO_OFFSET_DATE_TIME)
+					.useOffsetTimeFormatter(ISO_OFFSET_TIME)
+					.useZonnedDateTimeFormatter(ISO_ZONED_DATE_TIME)
+					)
 			.create();
 
 	@Override

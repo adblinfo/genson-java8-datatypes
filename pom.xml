@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>se.blinfo</groupId>
 	<artifactId>genson-java8-datatypes</artifactId>
-	<version>0.0.1-RELEASE</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>genson-java8-datatypes</name>
 	<inceptionYear>2016</inceptionYear>
 	<!-- <issueManagement> <system>JIRA</system> <url></url> </issueManagement> -->
