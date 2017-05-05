@@ -2,16 +2,16 @@
 java8 types genson bundle.
 Java8 data type(Optional and DateTime) module for gson
 
-Get from maven central repo
-
+Clone and build using mvn clean install
+```xml
 <dependency>
     <groupId>se.blinfo</groupId>
-	  <artifactId>genson-java8-datatypes</artifactId>
-	  <version>1.0.0-SNAPSHOT</version>
+    <artifactId>genson-java8-datatypes</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 </dependency>
-
-Create a GensonBuilder
-
+```
+## Create a GensonBuilder
+```java
 Genson genson = new GensonBuilder()
 			.useDateAsTimestamp(false)
 			//.withConverterFactory(new DefaultConverters.EnumConverterFactory(false))
@@ -27,11 +27,11 @@ Genson genson = new GensonBuilder()
 					.useZonnedDateTimeFormatter(ISO_ZONED_DATE_TIME)
 					)
 			.create();
-
-Optinal Types
+```
+## Java 8 Optinal Types
 
 Empty Optional value is treated as null. Non Empty optional value are treat as optional.get()
-
+```java
     @Test
     public void testOptional() {
         assertEquals("10", genson.serialize(OptionalInt.of(10)));
@@ -52,10 +52,12 @@ Empty Optional value is treated as null. Non Empty optional value are treat as o
         assertEquals("null", genson.serialize(Optional.of(Optional.empty())));
         assertEquals(Optional.empty(), genson.deserialize("null", Optional.class));
     }
-DateTime Types
+```
+## Java 8 DateTime Types
 
 Java8 new datetime types serialized using ISO-9601 format
 
+```java
     @Test
     public void testDateTime() throws Exception {
         // java8 datetime
@@ -100,3 +102,4 @@ Java8 new datetime types serialized using ISO-9601 format
         assertEquals("\"P1D\"", genson.serialize(period));
         assertEquals(duration, genson.deserialize("\"P1D\"", Duration.class));
     }
+```
